@@ -26,12 +26,10 @@ jobs:
 
       - name: Rename JAR artifacts
         run: |
-          for f in woodcutting/target/woodcutting-*-dep-included.jar; do
-            mv "$f" "${f/-dep-included/}"
-          done
+          mv woodcutting/target/woodcutting-*-dep-included.jar woodcutting/target/merlins-woodcutting.jar
 
       - name: Upload JAR artifacts to release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            woodcutting/target/woodcutting-*.jar
+            woodcutting/target/merlins-woodcutting.jar
