@@ -27,7 +27,7 @@ import org.dreambot.merlin.woodcutting.tasks.WalkToTreeAreaTask;
     author = "Merlin",
     description = "Merlin's power chopping script.",
     category = Category.WOODCUTTING,
-    version = 0.2)
+    version = 0.3)
 public class Main extends TaskScript {
   private final AntiBanTask antiBan;
   private final String nonMiscItemRegex = "axe|logs|scroll";

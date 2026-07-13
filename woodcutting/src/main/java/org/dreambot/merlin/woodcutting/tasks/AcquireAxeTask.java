@@ -81,7 +81,7 @@ public class AcquireAxeTask extends TaskNode {
           Logger.error("Failed to deposit all items in bank.");
           return -1;
         }
-        if (!Utility.withdrawItemFromBank(axeName)) {
+        if (!Utility.withdrawItemFromBank(axeName, 1)) {
           Logger.error("Failed to withdraw " + axeName + " from bank.");
           return -1;
         }

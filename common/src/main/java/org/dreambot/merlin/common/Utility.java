@@ -216,19 +216,31 @@ public class Utility {
   }
 
   /**
+   * Counts the number of items in the player's inventory that match the specified item name.
+   *
+   * @param itemName The name of the item to count (case-insensitive).
+   * @return The number of matching items in the inventory.
+   */
+  public static int countInInventory(String itemName) {
+    return Inventory.count(
+        item -> item != null && item.getName().toLowerCase().contains(itemName.toLowerCase()));
+  }
+
+  /**
    * Withdraws an item from the bank if it is available and the bank is open.
    *
    * @param itemName The name of the item to withdraw (case-insensitive).
+   * @param amount The amount of the item to withdraw.
    * @return true if the item was successfully withdrawn, false otherwise.
    */
-  public static boolean withdrawItemFromBank(String itemName) {
+  public static boolean withdrawItemFromBank(String itemName, int amount) {
     if (!Bank.isOpen()) {
       Logger.error("Called withdrawItemFromBank() but bank is not open.");
       return false;
     }
 
     if (Bank.contains(itemName)) {
-      if (Bank.withdraw(itemName, 1)) {
+      if (Bank.withdraw(itemName, amount)) {
         return Sleep.sleepUntil(() -> Inventory.contains(itemName), WITHDRAW_TIMEOUT_MS);
       }
     }
