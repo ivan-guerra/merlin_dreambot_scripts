@@ -248,6 +248,26 @@ public class Utility {
   }
 
   /**
+   * Withdraws all items of a specific type from the bank if it is available and the bank is open.
+   *
+   * @param itemName The name of the item to withdraw (case-insensitive).
+   * @return true if all items were successfully withdrawn, false otherwise.
+   */
+  public static boolean withdrawAll(String itemName) {
+    if (!Bank.isOpen()) {
+      Logger.error("Called withdrawAll() but bank is not open.");
+      return false;
+    }
+
+    if (Bank.contains(itemName)) {
+      if (Bank.withdrawAll(itemName)) {
+        return Sleep.sleepUntil(() -> Inventory.contains(itemName), WITHDRAW_TIMEOUT_MS);
+      }
+    }
+    return false;
+  }
+
+  /**
    * Deposits all items in the player's inventory into the bank.
    *
    * @return true if all items were successfully deposited, false otherwise.
