@@ -27,9 +27,11 @@ jobs:
       - name: Rename JAR artifacts
         run: |
           mv woodcutting/target/woodcutting-*-dep-included.jar woodcutting/target/merlins-woodcutting.jar
+          mv sunfire_crafter/target/sunfire_crafter-*-dep-included.jar sunfire_crafter/target/merlins-sunfire-crafter.jar
 
       - name: Upload JAR artifacts to release
         uses: softprops/action-gh-release@v2
         with:
           files: |
             woodcutting/target/merlins-woodcutting.jar
+            sunfire_crafter/target/merlins-sunfire-crafter.jar
